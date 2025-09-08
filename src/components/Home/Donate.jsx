@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Heart } from "lucide-react";
 import useApi from "../../Hooks/useApi.js";
 
+// Brand color (Pantone 2726C)
+const BRAND_BLUE = "#2726CC";
+
 const Donate = () => {
   const { sendRequest, loading, error, success } = useApi();
   const [donationType, setDonationType] = useState(null);
@@ -58,7 +61,7 @@ const Donate = () => {
     return (
       <div className="bg-gray-50 flex items-center justify-center py-16">
         <div className="max-w-md w-full mx-4 bg-white rounded-xl shadow-lg p-8 text-center">
-          <Heart className="h-12 w-12 text-yellow-600 mx-auto mb-6" />
+          <Heart className="h-12 w-12 mx-auto mb-6" style={{ color: BRAND_BLUE }} />
           <h2 className="text-2xl font-bold mb-4">
             Thank You for Your Support!
           </h2>
@@ -67,7 +70,8 @@ const Donate = () => {
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="bg-yellow-600 text-white px-6 py-3 rounded-lg hover:bg-yellow-700 transition-colors"
+            className="text-white px-6 py-3 rounded-lg transition-colors"
+            style={{ backgroundColor: BRAND_BLUE }}
           >
             Make Another Donation
           </button>
@@ -81,11 +85,11 @@ const Donate = () => {
       {/* Donation Header Section (Under Carousel) */}
       <section
         className="py-12"
-        style={{ backgroundColor: "#FFF9E6" }} // yellow-tinted background
+        style={{ backgroundColor: "#F5F6FF" }} // light blue-tinted background
       >
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <Heart className="h-12 w-12 text-yellow-600 mx-auto mb-6" />
+            <Heart className="h-12 w-12 mx-auto mb-6" style={{ color: BRAND_BLUE }} />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Seeds of change begin with you—plant them today.
             </h2>
@@ -96,13 +100,15 @@ const Donate = () => {
             </p>
             <div className="flex justify-center gap-4">
               <button
-                className="bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-700 transition-colors"
+                className="text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                style={{ backgroundColor: BRAND_BLUE }}
                 onClick={() => setDonationType("one-time")}
               >
                 One-time Donation
               </button>
               <button
-                className="border border-yellow-600 text-yellow-600 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors"
+                className="px-6 py-3 rounded-lg font-semibold transition-colors"
+                style={{ border: `2px solid ${BRAND_BLUE}`, color: BRAND_BLUE }}
                 onClick={() => setDonationType("monthly")}
               >
                 Monthly Donation
@@ -117,8 +123,8 @@ const Donate = () => {
         <section className="py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4">
             <div className="bg-white rounded-xl shadow-lg p-8">
-              {/* Personal Info */}
               <form onSubmit={handleDonate}>
+                {/* Personal Info */}
                 <div className="mb-8">
                   <h3 className="text-xl font-semibold mb-4">
                     Personal Information
@@ -131,7 +137,8 @@ const Donate = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:border-transparent"
+                      style={{ focusRingColor: BRAND_BLUE }}
                     />
                     <input
                       type="email"
@@ -140,14 +147,16 @@ const Donate = () => {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:border-transparent"
+                      style={{ focusRingColor: BRAND_BLUE }}
                     />
                     <textarea
                       name="message"
                       placeholder="Optional Message (e.g. dedication note)"
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:border-transparent"
+                      style={{ focusRingColor: BRAND_BLUE }}
                       rows="3"
                     ></textarea>
                   </div>
@@ -163,9 +172,14 @@ const Donate = () => {
                         key={preset}
                         className={`py-3 rounded-lg transition-colors ${
                           amount === preset
-                            ? "bg-yellow-600 text-white"
+                            ? "text-white"
                             : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                         }`}
+                        style={
+                          amount === preset
+                            ? { backgroundColor: BRAND_BLUE }
+                            : {}
+                        }
                         onClick={() => setAmount(preset)}
                       >
                         ${preset}
@@ -185,7 +199,8 @@ const Donate = () => {
                       type="number"
                       value={amount}
                       onChange={(e) => setAmount(Number(e.target.value))}
-                      className="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:border-transparent"
+                      style={{ focusRingColor: BRAND_BLUE }}
                       min="1"
                       required
                     />
@@ -198,7 +213,8 @@ const Donate = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-yellow-600 text-white py-4 rounded-lg text-lg font-semibold hover:bg-yellow-700 transition-colors disabled:opacity-50"
+                  className="w-full text-white py-4 rounded-lg text-lg font-semibold transition-colors disabled:opacity-50"
+                  style={{ backgroundColor: BRAND_BLUE }}
                 >
                   {loading
                     ? "Processing..."
