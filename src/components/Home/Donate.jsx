@@ -85,7 +85,7 @@ const Donate = () => {
       {/* Donation Header Section (Under Carousel) */}
       <section
         className="py-12"
-        style={{ backgroundColor: "#F5F6FF" }} // light blue-tinted background
+        style={{ backgroundColor: "#F5F6FF" }}
       >
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
@@ -98,7 +98,7 @@ const Donate = () => {
               Every contribution grows our shared vision for a collective future
               and thriving planet.
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               <button
                 className="text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                 style={{ backgroundColor: BRAND_BLUE }}
@@ -113,13 +113,48 @@ const Donate = () => {
               >
                 Monthly Donation
               </button>
+              <button
+                className="px-6 py-3 rounded-lg font-semibold transition-colors"
+                style={{ border: `2px solid ${BRAND_BLUE}`, color: BRAND_BLUE }}
+                onClick={() => setDonationType("bank-transfer")}
+              >
+                Bank Transfer
+              </button>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Bank Transfer Section */}
+      {donationType === "bank-transfer" && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-2xl mx-auto px-4">
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h3 className="text-2xl font-semibold mb-4 text-center">
+                Bank Transfer Details
+              </h3>
+              <p className="text-gray-600 mb-6 text-center">
+                You can support us by making a direct bank transfer using the details below.
+              </p>
+
+              <div className="bg-gray-100 rounded-lg p-6 space-y-3 text-left">
+                <p><strong>Bank Name:</strong> Example Bank</p>
+                <p><strong>Account Name:</strong> Recycle Lebanon NGO</p>
+                <p><strong>Account Number:</strong> 1234567890</p>
+                <p><strong>SWIFT Code:</strong> EXAMP123</p>
+                <p><strong>IBAN:</strong> LB12 3456 7890 1234 5678 9012 34</p>
+              </div>
+
+              <p className="text-gray-500 mt-6 text-sm text-center">
+                Please include your full name as a reference so we can acknowledge your donation.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Donation Form */}
-      {donationType && (
+      {(donationType === "one-time" || donationType === "monthly") && (
         <section className="py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4">
             <div className="bg-white rounded-xl shadow-lg p-8">
