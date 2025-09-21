@@ -28,7 +28,7 @@ const Newsletter = () => {
         <div className="max-w-2xl mx-auto text-center">
           <h2
             className="text-3xl font-bold mb-6"
-            style={{ color: RECYCLE_LEBANON_BLUE }}
+            style={{ }}
           >
             Receive whispers of change
           </h2>
